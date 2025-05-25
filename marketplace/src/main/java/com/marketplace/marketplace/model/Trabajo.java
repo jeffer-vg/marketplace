@@ -92,5 +92,15 @@ public class Trabajo {
     public void setNumeroContacto(String numeroContacto) {
         this.numeroContacto = numeroContacto;
     }
+    private boolean aprobado = false; // 🔸 Nuevo campo
+
+    // Getters y setters
+    public boolean isAprobado() {
+        return aprobado;
+    }
+
+    public void setAprobado(boolean aprobado) {
+        this.aprobado = aprobado;
+    }
 }
 

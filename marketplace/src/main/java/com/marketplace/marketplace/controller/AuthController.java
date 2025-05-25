@@ -64,4 +64,5 @@ public ResponseEntity<?> login(@RequestBody Usuario datos) {
             return ResponseEntity.status(400).body("El correo ya está registrado");
         }
     }
+    
 }

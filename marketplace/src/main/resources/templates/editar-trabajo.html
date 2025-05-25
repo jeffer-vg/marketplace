@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/css/editar-trabajos.css" />
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+
 <head>
     <title>Editar Trabajo</title>
 </head>
 <body>
 <h1>Editar Trabajo</h1>
-
-<form th:action="@{'/admin/trabajos/editar/' + ${trabajo.id}}" method="post">
+<br><br><br><br><br>
+<form th:action="@{'/admin/trabajos/editar/' + ${trabajo.id}}" method="post" 
+      onsubmit="return confirmarAprobacion();">
 
     <label>Título:</label><br/>
     <input type="text" name="titulo" th:value="${trabajo.titulo}" required/><br/><br/>
@@ -30,11 +34,30 @@
     <label>URL de la imagen:</label><br/>
     <input type="text" name="imagenUrl" th:value="${trabajo.imagenUrl}" required/><br/><br/>
 
+    <!-- Checkbox para aprobar el trabajo -->
+    <label>
+      <input type="checkbox" name="aprobado" th:checked="${trabajo.aprobado}" />
+      <span th:text="${trabajo.aprobado} ? '✅ Aprobado' : '❌ Desaprobado'"></span>
+    </label><br/><br/>
+
     <button type="submit">Guardar Cambios</button>
+    <a href="/admin/trabajos">Volver</a>
+
 </form>
 
 <br/>
-<a href="/admin/trabajos">Volver</a>
 
+<script>
+  function confirmarAprobacion() {
+    const aprobadoCheckbox = document.querySelector('input[name="aprobado"]');
+    
+    if (aprobadoCheckbox.checked) {
+      return confirm('¿Seguro que quieres aprobar este trabajo?');
+    } else {
+      return confirm('¿Seguro que quieres desaprobar este trabajo?');
+    }
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

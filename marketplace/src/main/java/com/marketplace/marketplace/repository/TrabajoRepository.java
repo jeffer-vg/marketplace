@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface TrabajoRepository extends JpaRepository<Trabajo, Long> {
     List<Trabajo> findByCategoria(String categoria);
+    List<Trabajo> findByAprobadoTrue();  // Trabajos aprobados
+    List<Trabajo> findByAprobadoFalse(); // Trabajos no aprobados
+    
 }
