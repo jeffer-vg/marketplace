@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marketplace</title>
+  <link rel="stylesheet" href="/CSS/index.css" />
+  <link rel="stylesheet" href="/css/navbar.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+  <div th:replace="fragments/navbar :: navbar"></div>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+
+<body>
+
+  <div class="carousel">
+    <div class="carousel-slide active"
+      style="background-image: url('https://peru.unir.net/wp-content/uploads/sites/2/2024/06/Que-es-el-diseno-grafico-y-por-que-es-importante2.jpg');">
+      <div class="carousel-content">
+        <h1>DISEÑO GRÁFICO</h1>
+        <p>Aquí encontrarás los mejores diseños, creatividad sin límites y soluciones visuales que harán destacar tu
+          marca.</p>
+      </div>
+    </div>
+
+    <div class="carousel-slide"
+      style="background-image: url('https://images.pexels.com/photos/1181676/pexels-photo-1181676.jpeg');">
+      <div class="carousel-content">
+        <h1>DESARROLLO WEB</h1>
+        <p>Soluciones digitales innovadoras para construir sitios web modernos, funcionales y adaptados a tus
+          necesidades.</p>
+      </div>
+    </div>
+
+    <div class="carousel-slide"
+      style="background-image: url('https://img.freepik.com/foto-gratis/arte-digital-celebracion-dia-internacional-mujer-derechos-mujer_23-2151368436.jpg?semt=ais_hybrid&w=740');">
+      <div class="carousel-content">
+        <h1>ILUSTRACIONES</h1>
+        <p>Creatividad y arte que dan vida a tus ideas con ilustraciones únicas y personalizadas para cualquier
+          proyecto.</p>
+      </div>
+    </div>
+
+    <div class="carousel-buttons">
+      <button id="prev">&#10094;</button>
+      <button id="next">&#10095;</button>
+    </div>
+
+    <div class="carousel-indicators">
+      <span class="indicator active"></span>
+      <span class="indicator"></span>
+      <span class="indicator"></span>
+    </div>
+  </div>
+
+  <section class="hero-section">
+    <div class="hero-text">
+      <h1>Descubre y Apoya la Creatividad Estudiantil</h1>
+      <p>Un mercado donde los estudiantes universitarios muestran y venden su trabajo creativo directamente a quienes
+        valoran el talento único.</p>
+    </div>
+    <div class="hero-image1">
+      <img src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg" alt="Creatividad estudiantil" />
+    </div>
+  </section>
+
+  <div class="subnav">
+    <h2 class="subnav-title">Categorias de producto</h2>
+  </div>
+
+  <div class="card-container">
+    <a href="/diseno-grafico" class="card">
+      <img src="https://images.pexels.com/photos/214574/pexels-photo-214574.jpeg" alt="Diseño Gráfico" />
+      <h2>Diseño Gráfico</h2>
+    </a>
+
+    <a href="/desarrollo-web" class="card">
+      <img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg" alt="Desarrollo Web" />
+      <h2>Desarrollo Web</h2>
+    </a>
+
+    <a href="/ilustraciones" class="card">
+      <img src="https://images.pexels.com/photos/3771083/pexels-photo-3771083.jpeg" alt="Ilustraciones" />
+      <h2>Ilustraciones</h2>
+    </a>
+  </div>
+<div class="subnav">
+  <h2 class="subnav-title">Productos</h2>
+</div>
+
+
+
+
+  <section class="how-it-works">
+    <h2>Cómo Funciona xxxxxxxxx</h2>
+    <p class="subtitle">Nuestra plataforma conecta a estudiantes universitarios talentosos con clientes que buscan
+      soluciones creativas y frescas.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="icon"><i class="fas fa-user"></i></div>
+        <h3>Crea una Cuenta</h3>
+        <p>Regístrate con tu correo universitario para unirte a nuestra creciente comunidad de estudiantes creativos.
+        </p>
+      </div>
+      <div class="step">
+        <div class="icon"><i class="fas fa-search"></i></div>
+        <h3>Descubre Trabajos</h3>
+        <p>Explora diferentes categorías y encuentra proyectos únicos creados por estudiantes talentosos.</p>
+      </div>
+      <div class="step">
+        <div class="icon"><i class="fas fa-shopping-cart"></i></div>
+        <h3>Realiza una Compra</h3>
+        <p>Compra directamente de los estudiantes y apoya su viaje creativo mientras obtienes trabajos de calidad.</p>
+      </div>
+      <div class="step">
+        <div class="icon"><i class="fas fa-check"></i></div>
+        <h3>Deja Comentarios</h3>
+        <p>Califica y reseña tus compras para ayudar a otros a encontrar grandes creadores estudiantiles.</p>
+      </div>
+    </div>
+  </section>
+  <div th:replace="fragments/footer :: footer"></div>
+  <script src="/js/index.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const correo = document.getElementById('correo').value;
+      const contrasena = document.getElementById('contrasena').value;
+      const mensaje = document.getElementById('mensaje');
+
+      mensaje.textContent = '';
+      mensaje.className = '';
+
+      try {
+        const response = await fetch('http://localhost:8080/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ correo, contrasena }),
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          mensaje.textContent = errorText || 'Credenciales incorrectas';
+          mensaje.className = 'error';
+          return;
+        }
+
+        const data = await response.json();
+        mensaje.textContent = `${data.mensaje}, ${data.rol}`;
+        mensaje.className = 'success';
+
+        switch (data.rol.toLowerCase()) {
+          case 'estudiante':
+            window.location.href = 'estudiante.html';
+            break;
+          case 'comprador':
+            window.location.href = 'comprador.html';
+            break;
+          case 'administrador':
+            window.location.href = 'admin.html';
+            break;
+        }
+      } catch (error) {
+        mensaje.textContent = 'Error de conexión: ' + error.message;
+        mensaje.className = 'error';
+      }
+    });
+  </script>
+</body>
+
+</html>

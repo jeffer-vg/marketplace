@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Desarrollo Web</title>
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="/css/detalle-trabajo.css" />
+  <!-- CSS navbar -->
+  <link rel="stylesheet" href="/css/navbar.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+  <!-- Font Awesome para iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+  <!-- Incluir navbar -->
+  <div th:replace="fragments/navbar :: navbar"></div>
+
+<body>
+<div class="detalle-container">
+    <div class="detalle-card">
+        <img th:src="${trabajo.imagenUrl}" th:alt="${trabajo.titulo}" class="detalle-imagen"/>
+
+        <div class="detalle-info">
+            <h1 th:text="${trabajo.titulo}">Título del trabajo</h1>
+            <p class="detalle-descripcion" th:text="${trabajo.descripcion}">Descripción larga del trabajo</p>
+            <p><strong>Precio:</strong> S/ <span th:text="${trabajo.precio}">0.00</span></p>
+            <p><strong>Contacto:</strong> <span th:text="${trabajo.numeroContacto}">000000000</span></p>
+            <a href="/index" class="volver-btn">← Volver al inicio</a>
+        </div>
+    </div>
+</div>
+</body>
+
+
+
+</html>
+<div th:replace="fragments/footer :: footer"></div>

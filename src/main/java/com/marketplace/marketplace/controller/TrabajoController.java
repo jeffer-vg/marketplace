@@ -14,7 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 import java.util.Optional;
 
-
 @Controller
 public class TrabajoController {
 
@@ -168,20 +167,11 @@ public class TrabajoController {
         }
     }
     // Vista de productos (todos los trabajos)
-
-
-// Vista de productos con búsqueda
 @GetMapping("/productos")
-public String mostrarTodosProductos(@RequestParam(required = false) String q, Model model) {
-    List<Trabajo> trabajos;
-    if (q != null && !q.isEmpty()) {
-        trabajos = trabajoRepository.buscarPorTituloODescripcion(q);
-    } else {
-        trabajos = trabajoRepository.findByAprobadoTrue();
-    }
-    model.addAttribute("trabajos", trabajos);
-    model.addAttribute("query", q);
-    return "productos";
+public String mostrarTodosProductos(Model model) {
+    List<Trabajo> trabajosAprobados = trabajoRepository.findByAprobadoTrue();
+    model.addAttribute("trabajos", trabajosAprobados);
+    return "productos"; // nombre de tu plantilla Thymeleaf
 }
 
 

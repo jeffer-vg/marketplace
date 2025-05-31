@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login y Registro</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .tab {
+      flex: 1;
+      padding: 10px;
+      cursor: pointer;
+      background: #eee;
+      border: 1px solid #ccc;
+      text-align: center;
+      user-select: none;
+    }
+    .tab.active {
+      background: #007bff;
+      color: white;
+      font-weight: bold;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    input {
+      margin-bottom: 15px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px;
+      font-size: 16px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #mensajeLogin, #mensajeRegister {
+      margin-top: 15px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .error {
+      color: red;
+    }
+    .success {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tabs">
+    <div id="tabLogin" class="tab active">Iniciar Sesión</div>
+    <div id="tabRegister" class="tab">Registrarse</div>
+  </div>
+
+  <!-- Formulario Login -->
+  <form id="loginForm">
+    <input type="email" id="correoLogin" placeholder="Correo" required />
+    <input type="password" id="contrasenaLogin" placeholder="Contraseña" required />
+    <button type="submit">Ingresar</button>
+    <p id="mensajeLogin"></p>
+  </form>
+
+  <!-- Formulario Registro -->
+  <form id="registerForm" style="display:none;">
+    <input type="text" id="usuarioRegister" placeholder="Usuario" required />
+    <input type="email" id="correoRegister" placeholder="Correo" required />
+    <input type="password" id="contrasenaRegister" placeholder="Contraseña" required />
+    <button type="submit">Registrarse</button>
+    <p id="mensajeRegister"></p>
+  </form>
+
+  <script>
+ // LOGIN
+loginForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const correo = document.getElementById('correoLogin').value;
+  const contrasena = document.getElementById('contrasenaLogin').value;
+  const mensajeLogin = document.getElementById('mensajeLogin');
+  mensajeLogin.textContent = '';
+
+  try {
+    const response = await fetch('http://localhost:8080/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ correo, contrasena }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      mensajeLogin.textContent = errorText || 'Credenciales incorrectas';
+      mensajeLogin.className = 'error';
+      return;
+    }
+
+    const data = await response.json();
+
+    // Guardar usuario en localStorage
+    localStorage.setItem('usuario', JSON.stringify(data));
+
+    // Redirigir al index
+    window.location.href = 'index';
+
+  } catch (error) {
+    mensajeLogin.textContent = 'Error de conexión: ' + error.message;
+    mensajeLogin.className = 'error';
+  }
+});
+
+// REGISTRO
+registerForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const usuario = document.getElementById('usuarioRegister').value;
+  const correo = document.getElementById('correoRegister').value;
+  const contrasena = document.getElementById('contrasenaRegister').value;
+  const mensajeRegister = document.getElementById('mensajeRegister');
+  mensajeRegister.textContent = '';
+
+  try {
+    const response = await fetch('http://localhost:8080/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ usuario, correo, contrasena }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      mensajeRegister.textContent = errorText || 'Error en el registro';
+      mensajeRegister.className = 'error';
+      return;
+    }
+
+    const data = await response.json();
+
+    // Guardar usuario en localStorage con rol basado en correo
+    localStorage.setItem('usuario', JSON.stringify({
+      usuario: usuario,
+      correo: correo,
+      rol: correo.toLowerCase().endsWith('.edu.pe') ? 'estudiante' : 'comprador'
+    }));
+
+    // Redirigir al index
+    window.location.href = 'index';
+
+  } catch (error) {
+    mensajeRegister.textContent = 'Error de conexión: ' + error.message;
+    mensajeRegister.className = 'error';
+  }
+});
+
+    </script>
+<script>
+  const tabLogin = document.getElementById('tabLogin');
+  const tabRegister = document.getElementById('tabRegister');
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+
+  tabLogin.onclick = () => {
+    tabLogin.classList.add('active');
+    tabRegister.classList.remove('active');
+    loginForm.style.display = 'flex';
+    registerForm.style.display = 'none';
+  };
+
+  tabRegister.onclick = () => {
+    tabRegister.classList.add('active');
+    tabLogin.classList.remove('active');
+    registerForm.style.display = 'flex';
+    loginForm.style.display = 'none';
+  };
+</script>
+
+</body>
+</html>

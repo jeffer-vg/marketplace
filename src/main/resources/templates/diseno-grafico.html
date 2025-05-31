@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Diseño Gráfico</title>
+
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="/diseno-grafico.css" />
+
+  <!-- CSS navbar -->
+  <link rel="stylesheet" href="/css/navbar.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+  <!-- Font Awesome para iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Incluir navbar -->
+  <div th:replace="fragments/navbar :: navbar"></div>
+
+  <div class="subnav">
+    <h1>Diseño Gráfico</h1>
+    <p>Explora una galería de diseños únicos creados por estudiantes talentosos. Logos, afiches, branding y más.</p>
+  </div>
+
+<section class="card-container">
+  <div class="card" th:each="trabajo : ${trabajos}">
+    
+    <!-- Imagen con overlay -->
+    <div class="card-img-container">
+      <a th:href="@{/trabajo/{id}(id=${trabajo.id})}" style="text-decoration: none; color: inherit;">
+        <img th:src="${trabajo.imagenUrl}" th:alt="${trabajo.titulo}" />
+        <div class="img-hover-overlay">
+          <p class="descripcion-hover" th:text="${trabajo.descripcion}">Descripción</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Contenido de la tarjeta con enlace envolviendo solo el texto -->
+    <div class="card-content">
+      <a th:href="@{/trabajo/{id}(id=${trabajo.id})}" style="text-decoration: none; color: inherit;">
+        <h2 th:text="${trabajo.titulo}">Título</h2>
+        <p>
+          <strong>Precio: </strong>S/ 
+          <span th:text="${trabajo.precio}">0.00</span>
+        </p>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<div th:replace="fragments/footer :: footer"></div>
+
+  <script src="/JS/Diseñografico.js"></script>
+</body>
+</html>

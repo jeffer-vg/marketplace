@@ -1,0 +1,278 @@
+/* Estilos para el carrusel */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 1500px;
+  height: 600px;
+  margin: 20px auto;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+.carousel-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  opacity: 0;
+  transition: opacity 0.7s ease-in-out;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.carousel-content {
+  background: rgba(0, 0, 0, 0.5);
+  color: #429cc5;
+  max-width: 450px;
+  padding: 30px;
+  margin-left: 40px;
+  border-radius: 10px;
+}
+
+.carousel-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #429cc5;
+  text-shadow: 1px 1px 2px black;
+}
+
+.carousel-content p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: white;
+  text-shadow: 1px 1px 3px black;
+}
+
+/* Indicadores */
+.carousel-indicators {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+  z-index: 3;
+}
+
+.carousel-indicators .indicator {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 6px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-indicators .indicator.active {
+  background-color: #429cc5;
+}
+
+.subnav {
+  display: flex;
+  justify-content: center;
+  /* centra horizontalmente todo lo que contiene */
+  align-items: center;
+  /* centra verticalmente si es necesario */
+  flex-direction: column;
+  /* para que título y menú estén uno abajo del otro */
+  width: 100%;
+}
+
+.subnav-title {
+  font-size: 42px;
+  text-shadow: 1px 1px 2px black;
+  font-weight: 700;
+  text-align: center;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 20px 0;
+  letter-spacing: 1.2px;
+  width: 100%;
+  /* que ocupe todo el ancho del contenedor */
+  display: block;
+  /* para que text-align funcione bien */
+}
+
+
+
+
+
+
+
+
+.card-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.card {
+  flex: 1 1 300px;
+  max-width: 300px;
+  cursor: pointer;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card h2 {
+  margin: 15px 0;
+  font-size: 1.5rem;
+}
+
+
+
+
+
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f3f4f6; /* Cambia este color si deseas otro fondo */
+  padding: 60px 80px;
+  height: 600px;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+.hero-text {
+  max-width: 50%;
+  color: #1f2937; /* Texto en gris oscuro */
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-text p {
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+.hero-image1 img {
+  max-width: 400px;
+  height: auto;
+  border-radius: 12px;
+}
+
+.how-it-works {
+  background-color: #f9fafb;
+  padding: 60px 40px;
+  text-align: center;
+  color: #111827;
+}
+
+.how-it-works h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.how-it-works .subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+  color: #4b5563;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.step {
+  max-width: 250px;
+}
+
+.step .icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  background-color: #111827;
+  color: white;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.step p {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+#mensaje {
+  margin-top: 15px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 1rem;
+  max-width: 300px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: none; /* Oculto por defecto */
+}
+
+#error, .error {
+  color: #b00020; /* rojo fuerte */
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#success, .success {
+  color: #2e7d32; /* verde */
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}

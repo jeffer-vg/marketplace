@@ -1,0 +1,96 @@
+<header class="navbar" th:fragment="navbar">
+<div class="navbar-left">
+  <img src="/images/logo.png" alt="Logo" class="logo" />
+</div>
+
+<nav class="nav-center">
+  <a href="/index">Inicio</a>
+  <a href="/productos">Productos</a>
+  <div class="dropdown">
+    <a href="#" class="dropdown-toggle">Categorías</a>
+    <ul class="dropdown-menu">
+      <li><a href="/diseno-grafico">Diseño Gráfico</a></li>
+      <li><a href="/desarrollo-web">Desarrollo Web</a></li>
+      <li><a href="/ilustraciones">Ilustraciones</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="navbar-right">
+
+  <!-- Botón Unirse (solo si no hay sesión) -->
+  <div id="login-section" class="icon-with-label">
+    <a href="/login" class="icon-btn" id="loginBtn">
+      <i class="fas fa-user-circle"></i>
+    </a>
+    <span class="label">Únete</span>
+  </div>
+
+  <!-- Botón Perfil (solo si está logueado) -->
+  <div id="perfil-section" class="icon-with-label" style="display: none;">
+    <a href="/perfil.html" class="icon-btn" id="perfilBtn">
+      <i class="fas fa-user"></i>
+    </a>
+    <span class="label">Perfil</span>
+  </div>
+
+  <!-- Botón Ayuda -->
+  <div class="icon-with-label">
+    <button id="btnAyuda" class="icon-btn">
+      <i class="fas fa-question-circle"></i>
+    </button>
+    <span class="label">Ayuda</span>
+  </div>
+
+  <!-- Carrito -->
+  <div class="icon-with-label">
+    <button class="icon-btn">
+      <i class="fas fa-shopping-cart"></i>
+    </button>
+  </div>
+</div>
+
+<!-- Modal Ayuda -->
+<div id="modalAyuda" style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%);
+  background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0 0 10px rgba(0,0,0,0.3); z-index:999;">
+  <h3>Ayuda</h3>
+  <p>Aquí puedes escribir la información de soporte o contacto.</p>
+  <button id="cerrarAyuda">Cerrar</button>
+</div>
+
+<!-- Script del navbar -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const usuario = localStorage.getItem('usuario');
+
+    // Mostrar perfil si hay sesión
+    if (usuario) {
+      document.getElementById('login-section').style.display = 'none';
+      document.getElementById('perfil-section').style.display = 'flex';
+    } else {
+      document.getElementById('login-section').style.display = 'flex';
+      document.getElementById('perfil-section').style.display = 'none';
+    }
+
+    // Modal ayuda
+    const btnAyuda = document.getElementById('btnAyuda');
+    const modalAyuda = document.getElementById('modalAyuda');
+    const cerrarAyuda = document.getElementById('cerrarAyuda');
+
+    btnAyuda.addEventListener('click', () => {
+      modalAyuda.style.display = 'block';
+    });
+
+    cerrarAyuda.addEventListener('click', () => {
+      modalAyuda.style.display = 'none';
+    });
+  });
+
+  function logout() {
+    localStorage.removeItem('usuario');
+    window.location.href = '/index';
+  }
+</script>
+
+  </script>
+</header>

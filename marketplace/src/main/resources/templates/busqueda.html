@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Resultados de búsqueda</title>
+    <link rel="stylesheet" href="/css/estilos.css" />
+</head>
+<body>
+    <h1>Resultados para: <span th:text="${query}">[consulta]</span></h1>
+
+    <div th:if="${#lists.isEmpty(trabajos)}">
+        <p>No se encontraron trabajos para la búsqueda.</p>
+    </div>
+
+    <ul>
+        <li th:each="trabajo : ${trabajos}">
+            <a th:href="@{/trabajo/{id}(id=${trabajo.id})}" th:text="${trabajo.titulo}">Título del trabajo</a> - 
+            <span th:text="${trabajo.categoria}">Categoría</span>
+        </li>
+    </ul>
+
+    <a href="/">Volver al inicio</a>
+</body>
+</html>

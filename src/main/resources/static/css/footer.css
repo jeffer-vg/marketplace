@@ -1,0 +1,86 @@
+/* Estilos para el footer */
+.footer {
+  background-color: #111827;
+  color: #fff;
+  padding: 150px 50px;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.footer-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  position: relative;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline;
+}
+
+/* Dropdown en el footer */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle::after {
+  content: " ▼";
+  font-size: 12px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #1f2937;
+  border: 1px solid #374151;
+  padding: 10px 0;
+  list-style: none;
+  top: 100%;
+  left: 0;
+  min-width: 180px;
+  z-index: 5;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li a {
+  color: #fff;
+  padding: 10px 20px;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #374151;
+}
+
+/* Social icons */
+.social-icons {
+  margin-top: 20px;
+}
+
+.social-icons a {
+  color: #fff;
+  margin: 0 10px;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #fbbf24;
+}

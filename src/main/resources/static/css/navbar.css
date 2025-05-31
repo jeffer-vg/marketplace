@@ -125,23 +125,3 @@ body {
   display: block;
   /* para que text-align funcione bien */
 }
-.search-form {
-  display: inline-flex;
-  align-items: center;
-  margin-left: 20px;
-}
-
-.search-form input[type="text"] {
-  padding: 6px 10px;
-  border-radius: 4px 0 0 4px;
-  border: 1px solid #ccc;
-}
-
-.search-form button {
-  padding: 6px 10px;
-  border: 1px solid #ccc;
-  background-color: #eee;
-  border-left: none;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-}
